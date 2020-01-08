@@ -43,29 +43,29 @@ string Student::getEmailAddress() {
 	return email_address;
 }
 
-void Student::setStudentDegree(Degree type) {
-	degreeType = type;
+void Student::setDaysToComplete(int days[]) {
+	for (int i = 0; i < sizeOfDaysToCompleteArr; i++) {
+		this->daysToComplete[i] = days[i];
+	}
 }
 
-Degree Student::getStudentDegree() {
-	return degreeType;
+int* Student::getDaysToComplete() {
+	return daysToComplete;//Arrays is a pointer in c++
 }
-
-/*
-Create a setter/getter function for daysToComplete.
-*/
-
 
 
 //Constructors:
-Student::Student(string firstName, string lastName, int age, string id, string email, Degree type){ //, int dayToComplete[3], ) {
+Student::Student(string id, string firstName, string lastName, string email, int age, int days[]){ //, int dayToComplete[3], ) {
 	this->first_name = firstName;
 	this->last_name = lastName;
 	this->studentAge = age;
 	this->studentID = id;
 	this->email_address = email;
-	//this->daysToComplete = dayToComplete[3]
-	this->degreeType = type;
+	//Degree type will be implemented in subclasses of the Book;
+
+	for (int i = 0; i < sizeOfDaysToCompleteArr; i++) {
+		this->daysToComplete[i] = days[i];
+	}
 }
 
 Student::Student() {
@@ -74,22 +74,19 @@ Student::Student() {
 	this->studentAge = 0;
 	this->studentID = "";
 	this->email_address = "";
-	//this->daysToComplete = dayToComplete[3]
-	this->degreeType;
+	for (int i = 0; i < sizeOfDaysToCompleteArr; i++) this->daysToComplete[i] = 0;
+	//Degree type will be implemented in subclasses of the Book;
 }
 
-void Student::printStudentInfo() {
+void Student::print() {
 	cout << "Student fullname is:" << this->first_name << " " << this->last_name << endl;
 	cout << "Student age is" << this->studentAge << " and email is: " << this->email_address << endl;
-	cout << "This student has an ID of " << this->studentID << " and degree type is: " << this->degreeType<<endl;
+	cout << "This student has an ID of " << this->studentID<< endl;
 }
 
-/*
-Create a virtual getDegree function here
-*/
 
 Student::~Student() {
-	cout << "Program has come to its end and going to be terminated at once" << endl;
+	cout << "Program will come to its end and going to be terminated at once" << endl;
 }
 
 

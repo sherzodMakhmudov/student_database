@@ -1,4 +1,8 @@
-﻿  Student.cpp
-  roster.cpp
+﻿  roster.cpp
+  networkStudent.cpp
+  securityStudent.cpp
+  softwareStudent.cpp
+  Student.cpp
   Generating Code...
-  studentDatabase.vcxproj -> \\Mac\Home\Downloads\studentDatabase\Debug\studentDatabase.exe
+Student.obj : error LNK2001: unresolved external symbol "public: virtual enum Degree __thiscall Student::getDegreeProgram(void)" (?getDegreeProgram@Student@@UAE?AW4Degree@@XZ)
+\\Mac\Home\Desktop\Projects\student_database\Debug\studentDatabase.exe : fatal error LNK1120: 1 unresolved externals
