@@ -8,7 +8,7 @@ SecurityStudent::SecurityStudent() :Student() {
 	studentDegreeType = SECURITY;
 }
 
-SecurityStudent::SecurityStudent(string id, string firstName, string lastName, string email, int age, int days[], Degree degreeType) :Student(firstName, lastName, age, id, email, days) {
+SecurityStudent::SecurityStudent(string id, string firstName, string lastName, string email, int age, int days[], Degree degreeType):Student(id, firstName, lastName, email, age, days) {
 	studentDegreeType = SECURITY;
 }
 
@@ -18,7 +18,7 @@ Degree SecurityStudent::getDegreeProgram() {
 
 void SecurityStudent::print() {
 	this->Student::print();
-	cout << studentDegreeType << " student" << endl;
+	cout <<"Security";
 }
 
 SecurityStudent::~SecurityStudent() {

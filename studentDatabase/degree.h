@@ -3,8 +3,8 @@ using namespace std;
 
 enum Degree{
 	SECURITY,
-	NETWORKING,
+	NETWORK,
 	SOFTWARE,
 };
 
-static const string studentDegreeArray[] = { "Security", "Networking", "Software" };
+static const string studentDegreeArray[] = { "SECURITY", "NETWORK", "SOFTWARE" };

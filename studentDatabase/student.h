@@ -43,7 +43,7 @@ public:
 public:
 	//Virtual functions:
 	virtual void print() = 0; //if there is a virtual function in the class then that class is an abstraact class,
-	virtual Degree getDegreeProgram(); //thus they should be in subclasses.
+	//virtual Degree getDegreeProgram(); //thus they should be in subclasses. :: Not working as of now.
 
 public:
 	//Destructor:

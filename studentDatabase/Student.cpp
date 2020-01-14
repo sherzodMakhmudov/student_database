@@ -6,7 +6,6 @@ void Student::setAge(int age) {
 	studentAge = age;
 }
 
-
 int Student::getAge(){
 	return studentAge;
 }
@@ -19,8 +18,8 @@ string Student::getStudentId(){
 	return studentID;
 }
 
-void Student::setFirstName(string fName) {
-	first_name = fName;
+void Student::setFirstName(string firstName) {
+	this->first_name = firstName;
 }
 
 string Student::getFirstName() {
@@ -50,7 +49,7 @@ void Student::setDaysToComplete(int days[]) {
 }
 
 int* Student::getDaysToComplete() {
-	return daysToComplete;//Arrays is a pointer in c++
+	return daysToComplete;//Arrays are a pointer in c++
 }
 
 
@@ -79,9 +78,9 @@ Student::Student() {
 }
 
 void Student::print() {
-	cout << "Student fullname is:" << this->first_name << " " << this->last_name << endl;
-	cout << "Student age is" << this->studentAge << " and email is: " << this->email_address << endl;
-	cout << "This student has an ID of " << this->studentID<< endl;
+	cout << this->studentID << "		First Name: " << this->first_name << "		Last Name: " << this->last_name <<
+		"		Age: " << this->studentAge << "		Days in course: " << this->daysToComplete <<
+		"		Degree Programm: ";
 }
 
 

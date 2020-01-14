@@ -8,7 +8,7 @@ SoftwareStudent::SoftwareStudent():Student(){
 	studentDegreeType = SOFTWARE;
 }
 
-SoftwareStudent::SoftwareStudent(string id, string firstName, string lastName, string email, int age, int days[], Degree degreeType) :Student(firstName, lastName, age,  id,  email, days) {
+SoftwareStudent::SoftwareStudent(string id, string firstName, string lastName, string email, int age, int days[], Degree type):Student(id, firstName, lastName, email, age, days) {
 	studentDegreeType = SOFTWARE;
 }
 
@@ -18,7 +18,7 @@ Degree SoftwareStudent::getDegreeProgram(){
 
 void SoftwareStudent::print(){
 	this->Student::print();
-	cout << studentDegreeType << " student" << endl;
+	cout <<"Software";
 }
 
 SoftwareStudent::~SoftwareStudent() {
