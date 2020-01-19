@@ -22,5 +22,5 @@ void SoftwareStudent::print(){
 }
 
 SoftwareStudent::~SoftwareStudent() {
-	this->Student::~Student();
+	//this->Student::~Student();
 }

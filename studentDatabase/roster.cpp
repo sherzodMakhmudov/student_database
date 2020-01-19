@@ -29,23 +29,36 @@ void main() {
 		"A1,John,Smith,John1989@gmail.com,20,30,35,40,SECURITY",
 		"A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
 		"A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
-		"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
+		"A4,Erin,Black,Erin.bla ck@comcast.net,22,50,58,40,SECURITY",
 		"A5,Sherzod,Makhmudov,smakhmu@wgu.edu,21,25,30,29,SOFTWARE",
 	};
+	
 
-	Roster* studentRoster = new Roster(numberOfStudents);// Ask 
-	cout << "Start parsing student data:" << endl;
+	Roster* studentRoster = new Roster(numberOfStudents);
+	
+	studentRoster->printMyInfo("Computer Science", "C++", "001102147", "Sherzod Makhmudov");
 
 	for (int i = 0; i < numberOfStudents; i++) {
 		studentRoster->parseStudentData(studentData[i]);
 	}
+	cout << "Printing all students in the roster:" << endl;
 	studentRoster->printAll();
-	string userEnterId;
-	cout << "Enter the student ID you want to remove: ";
-	cin >> userEnterId;
-	studentRoster->remove(userEnterId);
-	cout << "Student’s average number of days in the three courses:" << endl;
-	studentRoster->printDaysInCourse(userEnterId);
+	studentRoster->printInvalidEmails();
+	string studentId = "A5";
+	cout << "Number of days in the three courses for student ID - " << studentId << ": " << endl;
+	studentRoster->printDaysInCourse(studentId);
+	cout << endl;
+	cout << "Printing student data by Software degree type:" << endl;
+	studentRoster->printByDegreeProgram(2);
+	cout << endl;
+	string studentToRemove = "A3";
+	cout << "Student ID - " << studentToRemove << " has been removed from the roster:" << endl;
+	studentRoster->remove(studentToRemove);
+	cout << endl;
+
+	cout << "Removing student #A3 again:";
+	studentRoster->remove(studentToRemove);
+	studentRoster->~Roster();
 	system("pause");
 }
 
@@ -72,32 +85,32 @@ void Roster::parseStudentData(string row) {
 
 		leftHandSide = rightHandSide + 1;
 		rightHandSide = row.find(",", leftHandSide);
-		string email = row.substr(leftHandSide, rightHandSide);
+		string email = row.substr(leftHandSide, rightHandSide - leftHandSide);
 		//cout << email << endl;
 
 		leftHandSide = rightHandSide + 1;
 		rightHandSide = row.find(",", leftHandSide);
-		int age = stoi(row.substr(leftHandSide, rightHandSide));
+		int age = stoi(row.substr(leftHandSide, rightHandSide - leftHandSide));
 		//cout << age << endl;
 
 		leftHandSide = rightHandSide + 1;
 		rightHandSide = row.find(",", leftHandSide);
-		int day1 = stoi(row.substr(leftHandSide, rightHandSide));
+		int day1 = stoi(row.substr(leftHandSide, rightHandSide - leftHandSide));
 		//cout << day1 << endl;
 
 		leftHandSide = rightHandSide + 1;
 		rightHandSide = row.find(",", leftHandSide);
-		int day2 = stoi(row.substr(leftHandSide, rightHandSide));
+		int day2 = stoi(row.substr(leftHandSide, rightHandSide - leftHandSide));
 		//cout << day2 << endl;
 
 		leftHandSide = rightHandSide + 1;
 		rightHandSide = row.find(",", leftHandSide);
-		int day3 = stoi(row.substr(leftHandSide, rightHandSide));
+		int day3 = stoi(row.substr(leftHandSide, rightHandSide - leftHandSide));
 		//cout << day3 << endl;
 
 		leftHandSide = rightHandSide + 1;
 		rightHandSide = row.find(",", leftHandSide);
-		string type = row.substr(leftHandSide, rightHandSide);
+		string type = row.substr(leftHandSide, rightHandSide - leftHandSide);
 		Degree degreeType;
 		if (type == "SECURITY") {
 			degreeType = SECURITY;
@@ -151,7 +164,7 @@ void Roster::remove(string studentID) {
 		}
 	}
 	if (found == false) {
-		cout << "Student was not found." << endl;
+		cout<<"Student is not found." << endl;
 	}
 
 }
@@ -161,7 +174,11 @@ void Roster::printDaysInCourse(string studentID) {
 	for (int i = 0; i <= lastIndex; i++) {
 		if (this->classRosterArray[i]->getStudentId() == studentID) {
 			found = true;
-			this->classRosterArray[i]->getDaysToComplete();
+			for (int j = 0; j < this->classRosterArray[i]->sizeOfDaysToCompleteArr; j++) {
+				
+				int* days = this->classRosterArray[i]->getDaysToComplete();
+				cout<< days[j] << " ";
+			}
 		}
 	}
 	if (found == false) {
@@ -170,9 +187,70 @@ void Roster::printDaysInCourse(string studentID) {
 }
 
 void Roster::printInvalidEmails() {
+	cout << "Printing all invalid emails:" << endl;
+	for (int i = 0; i <= lastIndex; i++) {
+		bool hasSpace = false;
+		string email = this->classRosterArray[i]->getEmailAddress();
+		int leftHandPosition = email.find("@");
+		int rightHandPostion = leftHandPosition + 1;
 
+		int leftHandDotPosition = email.find(".");
+		int leftRightDotPosition = leftHandDotPosition + 1;
+
+		int leftHandSpacePostion = email.find(" ");
+		int righthandSpacePosition = leftHandDotPosition + 1;
+		if (leftHandSpacePostion >= 0) {
+			hasSpace = true;
+		}
+		else {
+			hasSpace = false;
+		}
+
+		//Position must be greater or equal to zero to void out of range error,
+		//if find() can't find the character it will return -1 which will break the programm.
+		if (leftHandPosition >= 0 && leftHandDotPosition>=0 && hasSpace == false) {
+			continue;
+		}
+		else if(leftHandSpacePostion>=0){
+			cout << "Invalid email with space:"<<email << endl;
+		}
+		else {
+			cout << "Missing '@' or '.' characters:" << email << endl;
+		}
+	}
 }
 
 void Roster::printByDegreeProgram(int degreeProgram) {
+	string typeString = studentDegreeArray[degreeProgram];
+	Degree type;
+	
+	if (studentDegreeArray[0] == "SECURITY") {
+		type = SECURITY;
+	}
+	else if (studentDegreeArray[1] == "NETWORK") {
+		type = NETWORK;
+	}
+	else if (studentDegreeArray[2] == "SOFTWARE") {
+		type = SOFTWARE;
+	}
+	
+	cout << "Printing " << studentDegreeArray[degreeProgram] << " student(s)"<<"\n";
+	for (int i = 0; i < sizeofArray; i++) {
+		if (this->classRosterArray[i]->getDegreeProgram() == degreeProgram) {
+			this->classRosterArray[i]->print();
+			cout << endl;
+		}
+	}
+}
 
+void Roster::printMyInfo(string courseTitle, string progLang, string id, string name) {
+	cout << "Course title:" << courseTitle << ", Programming language used:" << progLang << ", student Id:" << id << ", name:" << name << endl;
+}
+
+Roster::~Roster() {
+	cout << "Roster destructor has been called." << endl<<endl;
+	for (int i = 0; i <= lastIndex; i++) {
+		delete this->classRosterArray[i]; //Deletes each student object that was created dynamically
+	}
+	delete classRosterArray; //Deletes dynamically allocated array of pointers to the student;
 }

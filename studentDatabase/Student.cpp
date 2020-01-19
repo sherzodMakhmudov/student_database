@@ -52,6 +52,22 @@ int* Student::getDaysToComplete() {
 	return daysToComplete;//Arrays are a pointer in c++
 }
 
+Degree Student::getDegreeProgram() {
+	return studentDegreeType;
+}
+
+void Student::print() {
+
+	cout << this->studentID << "		First Name: " << this->getFirstName() << "		Last Name: " << this->getLastName() <<
+		"		Age: " << this->getAge() << "		Days in course: ";
+
+	for (int i = 0; i < sizeOfDaysToCompleteArr; i++) {
+		int* daysToComplete = getDaysToComplete();
+		cout << this->daysToComplete[i] << " ";
+	}
+	cout << "		Days in course: ";
+}
+
 
 //Constructors:
 Student::Student(string id, string firstName, string lastName, string email, int age, int days[]){ //, int dayToComplete[3], ) {
@@ -77,15 +93,9 @@ Student::Student() {
 	//Degree type will be implemented in subclasses of the Book;
 }
 
-void Student::print() {
-	cout << this->studentID << "		First Name: " << this->first_name << "		Last Name: " << this->last_name <<
-		"		Age: " << this->studentAge << "		Days in course: " << this->daysToComplete <<
-		"		Degree Programm: ";
-}
-
 
 Student::~Student() {
-	cout << "Program will come to its end and going to be terminated at once" << endl;
+	//cout << "Program will come to its end and going to be terminated at once" << endl;
 }
 
 

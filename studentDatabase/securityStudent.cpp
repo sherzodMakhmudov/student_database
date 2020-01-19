@@ -22,5 +22,5 @@ void SecurityStudent::print() {
 }
 
 SecurityStudent::~SecurityStudent() {
-	this->Student::~Student();
+	//this->Student::~Student();
 }

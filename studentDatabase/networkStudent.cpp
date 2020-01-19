@@ -22,5 +22,5 @@ void NetworkStudent::print() {
 }
 
 NetworkStudent::~NetworkStudent() {
-	this->Student::~Student();
+	//this->Student::~Student();
 }
